@@ -11,6 +11,8 @@ RUN apk update && \
 # ユーザー node を使用する設定
 USER node
 
+COPY --chown=node:node . .
+
 # node command
 COPY --from=node /usr/local/bin /usr/local/bin
 # npm command
