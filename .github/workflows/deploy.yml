@@ -27,12 +27,10 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
           role-to-assume: ${{ secrets.PROD_AWS_ASSUME_ROLE_ARN }}
           role-duration-seconds: 1800
-
       - name: Set env vars for prod
           # env: で設定すると、当該ステップのみで有効な環境変数になるから＄GITHUB _ENVを利用
           # if: github.ref == 'refs/heads/main'
           run: echo "ENV_NAME=prod" >> $GITHUB_ENV
-
       - uses: actions/checkout@v2
 
       - run: docker-compose up -d --build app web
