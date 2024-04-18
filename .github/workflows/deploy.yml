@@ -56,8 +56,8 @@ jobs:
       - run: docker-compose exec -T web npm ci
         if: ${{ !steps.cache-npm-ci.outputs.cache-hit }}
 
-      - name: Change ownership to node user
-        run: docker-compose exec -T web chown -R node:node .
+      # - name: Change ownership to node user
+      #   run: docker-compose exec -T web chown -R node:node .
 
       - run: sudo docker-compose exec -T web npm run prod
 
