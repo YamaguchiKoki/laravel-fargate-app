@@ -56,10 +56,8 @@ jobs:
       - run: docker-compose exec -T web npm ci
         if: ${{ !steps.cache-npm-ci.outputs.cache-hit }}
 
-      # - name: Change ownership to node user
-      #   run: docker-compose exec -T web chown -R node:node .
 
-      - run: sudo docker-compose exec -T --user root web npm run prod
+      - run: docker-compose exec -T --user root web npm run prod
 
       - uses: aws-actions/amazon-ecr-login@v1
         id: amazon-ecr-login
