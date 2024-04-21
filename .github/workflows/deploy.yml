@@ -52,6 +52,9 @@ jobs:
       #   with:
       #     path: backend/node_modules
       #     key: npm-v1-${{ hashFiles('backend/package-lock.json') }}
+      - name: Adjust permissions for npm cache
+        run: sudo chown -R 1001:127 "/root/.npm"
+        if: ${{ !steps.cache-npm-ci.outputs.cache-hit }}
 
       - run: docker-compose exec -T web npm ci
         if: ${{ !steps.cache-npm-ci.outputs.cache-hit }}
