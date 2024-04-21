@@ -23,9 +23,6 @@ RUN apk update && \
 # Setup directories and permissions
 WORKDIR /work/backend
 
-USER root
-RUN chown -R node:node /root/.npm
-USER node
 
 # Assuming that you need node and npm commands to run build scripts for static files
 # Copy node and npm binaries from node stage
